@@ -1,26 +1,40 @@
+:root {
+    --clear: lightpink;
+    --delete: lightblue;
+}
 * {
     margin: 0;
     padding: 0;
 }
 body {
+    font-family: Arial, Helvetica, sans-serif;
+    color: black;
+    font-size: 20px;
+    text-align: center;
+}
+.main {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 75vh;
+    min-height: 500px;
+    padding: 10px;
+    margin-top: 50px;
+    margin-bottom: 30px;
 }
 .container {
     width: 400px;
-    padding: 25px;
     border: solid black 2px;
-    border-radius: 25px;
+    border-radius: 15px;
+    padding: 20px;
     background-color: gray;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-gap: 20px;
+    grid-gap: 10px;
 }
 .output {
-    background-color: red;
+    background-color: white;
     grid-column: 1/-1;
     height: 100px;
     padding: 10px 20px;
@@ -31,10 +45,35 @@ body {
     grid-column: span 2;
 }
 button {
-    padding: 20px;
+    color: inherit;
+    font-size: inherit;
+    font-family: inherit;
+    cursor: pointer;
     border: 2px solid black;
     border-radius: 5px;
-    background-color: aqua;
-    font-size: 20px;
-    cursor: pointer;
+    padding: 20px;
+}
+button:hover {
+    background-color: gray;
+}
+button:active {
+    background-color: darkgray;
+}
+.clear {
+    background-color: var(--clear);
+}
+.clear:hover {
+    background-color: red;
+}
+.clear:active {
+    background-color: darkred;
+}
+.delete {
+    background-color: var(--delete);
+}
+.delete:hover {
+    background-color: blue;
+}
+.delete:active {
+    background-color: darkblue;
 }
