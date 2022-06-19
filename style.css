@@ -72,8 +72,8 @@ button:active {
     background-color: var(--delete);
 }
 .delete:hover {
-    background-color: blue;
+    background-color: lightskyblue;
 }
 .delete:active {
-    background-color: darkblue;
+    background-color: blue;
 }
