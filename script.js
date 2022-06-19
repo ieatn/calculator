@@ -1,5 +1,9 @@
-let prev = document.querySelector('.prev')
-let curr = document.querySelector('.curr')
+let firstOperand = ''
+let secondOperand = ''
+let currentOperation = null
+
+const prev = document.querySelector('.prev')
+const curr = document.querySelector('.curr')
 const numbers = document.querySelectorAll('[data-number]')
 const operations = document.querySelectorAll('[data-operation]')
 const clear = document.querySelector('.clear')
@@ -13,12 +17,9 @@ numbers.forEach((button) => {
 clear.addEventListener('click', () => clearScreen())
 del.addEventListener('click', () => deleteNum())
 operations.forEach((button) => {
-    button.addEventListener('click', () => calculate(button.textContent))
+    button.addEventListener('click', setOperation(button.textContent))
 })
-equals.addEventListener('click', () => {
-    prev.textContent = curr.textContent;
-    curr.textContent = `=${1+1}`;
-})
+equals.addEventListener('click', evaluate())
 
 
 // functions
@@ -34,33 +35,54 @@ function deleteNum() {
 function appendNum(num) {
     curr.textContent += num
 }
-function calculate(op) {
-    if (op === "+") {
-        curr.textContent += "+"
-        add()
+function setOperation(operator) {
+    if (currentOperation !== null) evaluate()
+    firstOperand = currentOperationScreen.textContent
+    currentOperation = operator
+    lastOperationScreen.textContent = `${firstOperand} ${currentOperation}`
+    shouldResetScreen = true
+}
+function evaluate() {
+    if (currentOperation == null) return
+    if (currentOperation === '÷' && curr.textContent === '0') {
+        alert("You can't divide by 0")
+        return
     }
-    if (op === "-") {
-        curr.textContent += "-"
-        subtract()
-    }
-    if (op === "x") {
-        curr.textContent += "x"
-        multiply()
-    }
-    if (op === "÷") {
-        curr.textContent += "÷"
-        divide()
+    curr.textContent = operate(currentOperation, firstOperand, secondOperand)
+    secondOperand = curr.textContent
+    prev.textContent = curr.textContent;
+    curr.textContent = `=${1+1}`;
+    currentOperation = null
+}
+function operate(op, a, b) {
+    a = Number(a)
+    b = Number(b)
+    switch (op) {
+        case '+':
+            return add(a, b)
+        case '-':
+            return substract(a, b)
+        case 'x':
+            return multiply(a, b)
+        case '÷':
+            if (b === 0) return null
+            else return divide(a, b)
+        default:
+            return null
     }
 }
-function add() {
-    console.log('add')
+function add(a, b) {
+    return a + b
 }
-function subtract() {
-    console.log('sub')
+
+function substract(a, b) {
+    return a - b
 }
-function multiply() {
-    console.log('multiply')
+
+function multiply(a, b) {
+    return a * b
 }
-function divide() {
-    console.log('divide')
+
+function divide(a, b) {
+    return a / b
 }
