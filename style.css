@@ -10,6 +10,7 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     color: black;
     font-size: 20px;
+    line-height: 1.6;
     text-align: center;
 }
 .main {
@@ -21,7 +22,7 @@ body {
     min-height: 500px;
     padding: 10px;
     margin-top: 50px;
-    margin-bottom: 30px;
+    margin-bottom: 60px;
 }
 .container {
     width: 400px;
@@ -36,10 +37,21 @@ body {
 .output {
     background-color: white;
     grid-column: 1/-1;
-    height: 100px;
     padding: 10px 20px;
     border: 2px solid black;
     border-radius: 5px;
+    /* make numbers stretch down and right */
+    text-align: right;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+.prev {
+    min-height: 64px;
+    font-size: 20px;
+}
+.curr {
+    min-height: 64px;
+    font-size: 40px;
 }
 .span-2 {
     grid-column: span 2;
@@ -76,4 +88,29 @@ button:active {
 }
 .delete:active {
     background-color: blue;
+}
+
+/* FOOTER */
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding: 10px;
+    font-size: 20px;
+}
+  
+.fa-github {
+    color: var(--font);
+    font-size: 24px;
+    transition: transform 0.3s ease-in-out;
+}
+  
+.fa-github:hover {
+    transform: rotate(360deg) scale(1.2);
 }
